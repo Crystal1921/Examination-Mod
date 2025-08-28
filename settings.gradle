@@ -3,6 +3,7 @@ pluginManagement {
         mavenLocal()
         gradlePluginPortal()
         maven { url = 'https://maven.neoforged.net/releases' }
+        // 添加镜像仓库地址
         maven { url = 'https://reposilite.exam.mirror' }
     }
 }

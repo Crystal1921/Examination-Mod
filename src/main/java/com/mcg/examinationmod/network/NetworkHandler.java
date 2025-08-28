@@ -16,11 +16,6 @@ public class NetworkHandler {
                 PlatformRequestPacket::handle
                 );
 
-        registrar.playToClient(
-                TeleportResponsePayload.TYPE,
-                TeleportResponsePayload.STREAM_CODEC,
-                TeleportResponsePayload::handle
-                );
             }
         }
 
