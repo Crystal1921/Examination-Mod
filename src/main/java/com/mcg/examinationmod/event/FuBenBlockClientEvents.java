@@ -18,6 +18,10 @@ import static com.mcg.examinationmod.ExaminationMod.*;
 public class FuBenBlockClientEvents {
     @SubscribeEvent
     public static void FuBenBlockEvent(PlayerInteractEvent.RightClickBlock event) {
+        //TODO : 这里可以直接只监听服务端事件，然后直接处理，不需要再客户端发包给服务端了
+
+        //TODO : 原版会触发两次，主手一次，副手一次，导致物品右击产生bug
+
         Level level = event.getLevel();
         Player player = event.getEntity();
         BlockPos pos = event.getPos();
