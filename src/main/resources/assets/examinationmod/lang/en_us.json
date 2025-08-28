@@ -1,0 +1,13 @@
+{
+  "itemGroup.examinationmod": "Examination Mod Tab",
+  "block.examinationmod.fuben_block": "Example Block",
+  "item.examinationmod.example_item": "Example Item",
+
+  "examinationmod.configuration.title": "Examination Mod Configs",
+  "examinationmod.configuration.section.examinationmod.common.toml": "Examination Mod Configs",
+  "examinationmod.configuration.section.examinationmod.common.toml.title": "Examination Mod Configs",
+  "examinationmod.configuration.items": "Item List",
+  "examinationmod.configuration.logDirtBlock": "Log Dirt Block",
+  "examinationmod.configuration.magicNumberIntroduction": "Magic Number Text",
+  "examinationmod.configuration.magicNumber": "Magic Number"
+}
