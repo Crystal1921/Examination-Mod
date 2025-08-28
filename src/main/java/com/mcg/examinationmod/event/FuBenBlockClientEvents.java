@@ -2,6 +2,8 @@ package com.mcg.examinationmod.event;
 
 import com.mcg.examinationmod.network.PlatformRequestPacket;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -28,14 +30,21 @@ public class FuBenBlockClientEvents {
         BlockState state = level.getBlockState(pos);
         ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
         state.getBlock();
-        if (level.isClientSide) {
+        if (!level.isClientSide && event.getHand() == InteractionHand.MAIN_HAND) {
             if (state.is(FUBEN))
                 if (stack.is(START_TEST_ITEM.get())) {
-                    PacketDistributor.sendToServer(new PlatformRequestPacket("start"));
+                    PlatformGenerator.generatePlatformAbovePlayer(player);
                 } else if (stack.is(PARTY_TEST_ITEM.get())){
-                    PacketDistributor.sendToServer(new PlatformRequestPacket("party"));
+                    if (player.level() instanceof ServerLevel serverLevel) {
+                        PlayerTeleporter.clearTeleportedPlayers();
+                        BlockPos platformCenter = PlatformGenerator.generatePlatformAbovePlayer(player, false);
+                        // 传送所有玩家到平台
+                        PlayerTeleporter.teleportAllPlayersToPlatform(serverLevel, platformCenter);
+                    }
                 } else if (stack.is(TEAM_TEST_ITEM.get())){
-                    PacketDistributor.sendToServer(new PlatformRequestPacket("team"));
+                    String playersList = PlayerTeleporter.getTeleportedPlayersAsString();
+                    player.sendSystemMessage(Component.literal("被传送的玩家名单:"));
+                    player.sendSystemMessage(Component.literal(playersList));
                 } else {
                     GuiOpenWrapper.openFubenBlockGui();
                 }
