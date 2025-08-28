@@ -30,6 +30,8 @@ public class FuBenBlockClientEvents {
                     PacketDistributor.sendToServer(new PlatformRequestPacket("start"));
                 } else if (stack.is(PARTY_TEST_ITEM.get())){
                     PacketDistributor.sendToServer(new PlatformRequestPacket("party"));
+                } else if (stack.is(TEAM_TEST_ITEM.get())){
+                    PacketDistributor.sendToServer(new PlatformRequestPacket("team"));
                 } else {
                     GuiOpenWrapper.openFubenBlockGui();
                 }

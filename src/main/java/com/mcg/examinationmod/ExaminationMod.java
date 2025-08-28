@@ -50,11 +50,11 @@ public class ExaminationMod {
     public static final DeferredItem<BlockItem> FUBEN_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("fuben_block", FUBEN);
 
     public static final DeferredItem<Item> START_TEST_ITEM = ITEMS.register("start_test_item",
-            ()-> new StartTestItem(new Item.Properties()));
+            ()-> new StartTestItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> PARTY_TEST_ITEM = ITEMS.register("party_test_item",
-            ()-> new PartyTestItem(new Item.Properties()));
+            ()-> new PartyTestItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> TEAM_TEST_ITEM = ITEMS.register("team_test_item",
-            ()-> new TeamTestItem(new Item.Properties()));
+            ()-> new TeamTestItem(new Item.Properties().stacksTo(1)));
 
     // Creates a creative tab with the id "examinationmod:example_tab" for the example item, that is placed after the combat tab
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()

@@ -5,6 +5,7 @@ import com.mcg.examinationmod.event.PlatformGenerator;
 import com.mcg.examinationmod.event.PlayerTeleporter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -13,6 +14,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
+import java.util.List;
 import java.util.UUID;
 
 // 平台请求网络包
@@ -29,23 +31,23 @@ public record PlatformRequestPacket(String text) implements CustomPacketPayload 
         context.enqueueWork(()-> {
                     var player = context.player();
                     switch (data.text) {
+                        case "team"  -> {
+                            String playersList = PlayerTeleporter.getTeleportedPlayersAsString();
+                            player.sendSystemMessage(Component.literal("被传送的玩家名单:"));
+                            player.sendSystemMessage(Component.literal(playersList));
+                        }
                         case "start" -> PlatformGenerator.generatePlatformAbovePlayer(player);
                         case "party" -> {
-                            if (player != null && player.level() instanceof ServerLevel serverLevel) {
+                            if (player.level() instanceof ServerLevel serverLevel) {
+                                PlayerTeleporter.clearTeleportedPlayers();
                                 BlockPos platformCenter = PlatformGenerator.generatePlatformAbovePlayer(player, false);
-                                if (platformCenter != null) {
-                                    // 获取玩家数量并传送所有玩家
-                                    int playerCount = PlayerTeleporter.getPlayerCount(serverLevel);
-                                    int teleportedCount = PlayerTeleporter.teleportAllPlayersToPlatform(serverLevel, platformCenter);
-                                    PlayerTeleporter.getPlayerCountAndTeleportAll(serverLevel, platformCenter);
-                                    context.reply(new TeleportResponsePayload(playerCount, teleportedCount));
-                                }
+                                // 传送所有玩家到平台
+                                PlayerTeleporter.teleportAllPlayersToPlatform(serverLevel, platformCenter);
                             }
                         }
                     }
-                });
-           // case "team"  -> 这里写方法
-        }
+        });
+    }
 
 
     @Override
