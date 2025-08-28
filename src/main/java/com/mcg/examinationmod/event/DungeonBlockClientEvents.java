@@ -1,6 +1,5 @@
 package com.mcg.examinationmod.event;
 
-import com.mcg.examinationmod.network.PlatformRequestPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -12,12 +11,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 import static com.mcg.examinationmod.ExaminationMod.*;
 @EventBusSubscriber
 // 副本方块客户端事件
-public class FuBenBlockClientEvents {
+public class DungeonBlockClientEvents {
     @SubscribeEvent
     public static void FuBenBlockEvent(PlayerInteractEvent.RightClickBlock event) {
         //TODO : 这里可以直接只监听服务端事件，然后直接处理，不需要再客户端发包给服务端了
