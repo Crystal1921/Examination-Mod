@@ -74,8 +74,8 @@ public class FubenBlockGui extends Screen {
     }
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        // 渲染背景
-        this.renderBackground(graphics, mouseX, mouseY, partialTicks);
+        // 渲染所有组件（包括输入框和按钮）
+        super.render(graphics, mouseX, mouseY, partialTicks);
 
         // 渲染标题
         graphics.drawString(
@@ -94,9 +94,6 @@ public class FubenBlockGui extends Screen {
                 this.height / 2 - 45,
                 0xFFFFFF
         );
-
-        // 渲染所有组件（包括输入框和按钮）
-        super.render(graphics, mouseX, mouseY, partialTicks);
     }
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
