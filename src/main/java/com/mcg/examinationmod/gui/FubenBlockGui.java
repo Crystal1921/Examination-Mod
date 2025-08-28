@@ -1,6 +1,5 @@
 package com.mcg.examinationmod.gui;
 
-import com.mcg.examinationmod.ExaminationMod;
 import com.mcg.examinationmod.network.PlatformRequestPacket;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -72,6 +71,7 @@ public class FubenBlockGui extends Screen {
             }
         }
     }
+
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         // 渲染所有组件（包括输入框和按钮）
@@ -95,6 +95,7 @@ public class FubenBlockGui extends Screen {
                 0xFFFFFF
         );
     }
+
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         // 处理回车键提交
