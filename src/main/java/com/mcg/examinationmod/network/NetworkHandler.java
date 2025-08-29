@@ -1,11 +1,12 @@
 package com.mcg.examinationmod.network;
+
 import com.mcg.examinationmod.ExaminationMod;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
-@EventBusSubscriber(modid = ExaminationMod.MODID,bus = EventBusSubscriber.Bus.MOD)
+
+@EventBusSubscriber(modid = ExaminationMod.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class NetworkHandler {
     @SubscribeEvent
     public static void registerPayloads(final RegisterPayloadHandlersEvent event) {
@@ -14,8 +15,8 @@ public class NetworkHandler {
                 PlatformRequestPacket.TYPE,
                 PlatformRequestPacket.STREAM_CODEC,
                 PlatformRequestPacket::handle
-                );
+        );
 
-            }
-        }
+    }
+}
 

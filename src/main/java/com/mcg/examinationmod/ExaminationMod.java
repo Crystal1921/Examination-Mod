@@ -1,34 +1,26 @@
 package com.mcg.examinationmod;
 
-import com.mcg.examinationmod.block.FuBenBlock;
+import com.mcg.examinationmod.block.DungeonBlock;
 import com.mcg.examinationmod.item.PartyTestItem;
 import com.mcg.examinationmod.item.StartTestItem;
 import com.mcg.examinationmod.item.TeamTestItem;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -46,7 +38,7 @@ public class ExaminationMod {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
     public static final DeferredBlock<Block> FUBEN = BLOCKS.register("fuben_block",
-            ()-> new FuBenBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
+            ()-> new DungeonBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
     public static final DeferredItem<BlockItem> FUBEN_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("fuben_block", FUBEN);
 
     public static final DeferredItem<Item> START_TEST_ITEM = ITEMS.register("start_test_item",

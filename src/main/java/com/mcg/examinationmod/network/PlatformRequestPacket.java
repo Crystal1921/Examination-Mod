@@ -11,11 +11,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-
-import java.util.List;
-import java.util.UUID;
 
 // 平台请求网络包
 public record PlatformRequestPacket(String text) implements CustomPacketPayload {
@@ -26,26 +22,26 @@ public record PlatformRequestPacket(String text) implements CustomPacketPayload 
             PlatformRequestPacket::new
     );
 
-    public static void handle(final PlatformRequestPacket data, final IPayloadContext context){
+    public static void handle(final PlatformRequestPacket data, final IPayloadContext context) {
         // 处理网络包的方法，它将接收到的数据在服务器端的逻辑线程上处理
-        context.enqueueWork(()-> {
-                    var player = context.player();
-                    switch (data.text) {
-                        case "team"  -> {
-                            String playersList = PlayerTeleporter.getTeleportedPlayersAsString();
-                            player.sendSystemMessage(Component.literal("被传送的玩家名单:"));
-                            player.sendSystemMessage(Component.literal(playersList));
-                        }
-                        case "start" -> PlatformGenerator.generatePlatformAbovePlayer(player);
-                        case "party" -> {
-                            if (player.level() instanceof ServerLevel serverLevel) {
-                                PlayerTeleporter.clearTeleportedPlayers();
-                                BlockPos platformCenter = PlatformGenerator.generatePlatformAbovePlayer(player, false);
-                                // 传送所有玩家到平台
-                                PlayerTeleporter.teleportAllPlayersToPlatform(serverLevel, platformCenter);
-                            }
-                        }
+        context.enqueueWork(() -> {
+            var player = context.player();
+            switch (data.text) {
+                case "team" -> {
+                    String playersList = PlayerTeleporter.getTeleportedPlayersAsString();
+                    player.sendSystemMessage(Component.literal("被传送的玩家名单:"));
+                    player.sendSystemMessage(Component.literal(playersList));
+                }
+                case "start" -> PlatformGenerator.generatePlatformAbovePlayer(player);
+                case "party" -> {
+                    if (player.level() instanceof ServerLevel serverLevel) {
+                        PlayerTeleporter.clearTeleportedPlayers();
+                        BlockPos platformCenter = PlatformGenerator.generatePlatformAbovePlayer(player, false);
+                        // 传送所有玩家到平台
+                        PlayerTeleporter.teleportAllPlayersToPlatform(serverLevel, platformCenter);
                     }
+                }
+            }
         });
     }
 
