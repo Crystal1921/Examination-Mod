@@ -37,9 +37,9 @@ public class ExaminationMod {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    public static final DeferredBlock<Block> FUBEN = BLOCKS.register("fuben_block",
+    public static final DeferredBlock<Block> DUNGEON_BLOCK = BLOCKS.register("dungeon_block",
             ()-> new DungeonBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
-    public static final DeferredItem<BlockItem> FUBEN_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("fuben_block", FUBEN);
+    public static final DeferredItem<BlockItem> DUNGEON_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("dungeon_block", DUNGEON_BLOCK);
 
     public static final DeferredItem<Item> START_TEST_ITEM = ITEMS.register("start_test_item",
             ()-> new StartTestItem(new Item.Properties().stacksTo(1)));
@@ -52,9 +52,9 @@ public class ExaminationMod {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.examinationmod")) //The language key for the title of your CreativeModeTab
             .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> FUBEN_BLOCK_ITEM.get().getDefaultInstance())
+            .icon(() -> DUNGEON_BLOCK_ITEM.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.accept(FUBEN_BLOCK_ITEM);
+                output.accept(DUNGEON_BLOCK_ITEM);
                 output.accept(START_TEST_ITEM);
                 output.accept(PARTY_TEST_ITEM);
                 output.accept(TEAM_TEST_ITEM);
@@ -80,7 +80,7 @@ public class ExaminationMod {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(FUBEN);
+            event.accept(DUNGEON_BLOCK);
         }
     }
     // You can use SubscribeEvent and let the Event Bus discover methods to call

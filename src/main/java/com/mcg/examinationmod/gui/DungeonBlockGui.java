@@ -10,12 +10,12 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.lwjgl.glfw.GLFW;
 
-public class FubenBlockGui extends Screen {
+public class DungeonBlockGui extends Screen {
     private EditBox textInput;
     private Button submitButton;
     private Level level;
 
-    public FubenBlockGui(Component title) {
+    public DungeonBlockGui(Component title) {
         super(title);
     }
 
@@ -89,8 +89,8 @@ public class FubenBlockGui extends Screen {
         // 渲染输入框标签
         graphics.drawString(
                 this.font,
-                Component.literal("输入 'platform' 生成平台:"),
-                this.width / 2 - 100,
+                Component.literal("输入 'start' 生成并传送到平台 输入 'party' 生成并将所有玩家传送到平台 输入 'team' 在聊天栏显示被 'party' 传送的所有玩家"),
+                this.width / 2 - 250,
                 this.height / 2 - 45,
                 0xFFFFFF
         );

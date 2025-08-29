@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "examinationmod:block/fuben_block"
+    "all": "examinationmod:block/dungeon_block"
   }
 }

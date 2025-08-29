@@ -37,7 +37,7 @@ public class PlatformGenerator {
             BlockPos centerAbovePos = centerPos.above(1); // 平台中心上方一格
             if (level.isEmptyBlock(centerAbovePos) || level.getBlockState(centerAbovePos).canBeReplaced()) {
                 if (level instanceof ServerLevel serverLevel) {
-                    serverLevel.setBlock(centerAbovePos, ExaminationMod.FUBEN.get().defaultBlockState(), 3);
+                    serverLevel.setBlock(centerAbovePos, ExaminationMod.DUNGEON_BLOCK.get().defaultBlockState(), 3);
 
                 }
 

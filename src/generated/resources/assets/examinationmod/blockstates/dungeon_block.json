@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "examinationmod:block/dungeon_block"
+    }
+  }
+}

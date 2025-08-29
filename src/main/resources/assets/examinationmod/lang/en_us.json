@@ -1,6 +1,6 @@
 {
   "itemGroup.examinationmod": "Examination Mod Tab",
-  "block.examinationmod.fuben_block": "Fuben",
+  "block.examinationmod.dungeon_block": "Dungeon",
   "item.examinationmod.start_test_item": "Start",
   "item.examinationmod.party_test_item": "Party",
   "item.examinationmod.team_test_item": "Team"
